@@ -2,9 +2,12 @@ package com.wind.liveat500px.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.inthecheesefactory.thecheeselibrary.view.BaseCustomViewGroup;
 import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
@@ -14,7 +17,8 @@ import com.wind.liveat500px.R;
  * Created by nuuneoi on 11/16/2014.
  */
 public class PhotoListItem extends BaseCustomViewGroup {
-
+    TextView tvName,tvDescription;
+    ImageView ivImg;
     public PhotoListItem(Context context) {
         super(context);
         initInflate();
@@ -48,7 +52,9 @@ public class PhotoListItem extends BaseCustomViewGroup {
     }
 
     private void initInstances() {
-
+        tvName = (TextView)findViewById(R.id.tvName);
+        tvDescription = (TextView)findViewById(R.id.tvDescription);
+        ivImg = (ImageView)findViewById(R.id.ivImg);
         // findViewById here
     }
 
@@ -92,8 +98,18 @@ public class PhotoListItem extends BaseCustomViewGroup {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = width * 2/3;
-        int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height,MeasureSpec.EXACTLY);
+        int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, newHeightMeasureSpec);
         setMeasuredDimension(widthMeasureSpec,newHeightMeasureSpec);
+    }
+
+    public void setNameText(String text){
+        tvName.setText(text);
+    }
+    public void setDescriptionText(String text){
+        tvDescription.setText(text);
+    }
+    public void setImageUrl(String url){
+        // TODO : Load Image
     }
 }

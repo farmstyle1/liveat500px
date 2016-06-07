@@ -12,6 +12,7 @@ import com.wind.liveat500px.R;
 import com.wind.liveat500px.adapter.PhotoListAdapter;
 import com.wind.liveat500px.dao.PhotoItemCollectionDAO;
 import com.wind.liveat500px.manager.HttpManager;
+import com.wind.liveat500px.manager.PhotoListManager;
 
 import java.util.Objects;
 
@@ -57,10 +58,13 @@ public class MainFragment extends Fragment {
             @Override
             public void onResponse(Call<PhotoItemCollectionDAO> call, Response<PhotoItemCollectionDAO> response) {
                 if(response.isSuccessful()){
+
                     PhotoItemCollectionDAO dao = response.body();
-                    Log.d("check","data "+ dao);
+                    PhotoListManager.getInstance().setDao(dao);
+                    listAdapter.notifyDataSetChanged();
+                    Log.d("check","Success "+ dao);
                 }else{
-                    Log.d("check", "error " + response.errorBody().toString());
+                    Log.d("check", "Error " + response.errorBody().toString());
                 }
             }
 
