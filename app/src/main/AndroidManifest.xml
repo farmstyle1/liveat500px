@@ -18,6 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data android:name="com.wind.liveat500px.configuration.GlideConfiguration"
+            android:value="GlideModule"/>
     </application>
 
 </manifest>
