@@ -2,17 +2,30 @@ package com.wind.liveat500px.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.wind.liveat500px.R;
+import com.wind.liveat500px.adapter.PhotoListAdapter;
+import com.wind.liveat500px.dao.PhotoItemCollectionDAO;
+import com.wind.liveat500px.manager.HttpManager;
+
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
  * Created by nuuneoi on 11/16/2014.
  */
 public class MainFragment extends Fragment {
+    private ListView listView;
+    private PhotoListAdapter listAdapter;
 
     public MainFragment() {
         super();
@@ -35,6 +48,27 @@ public class MainFragment extends Fragment {
 
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
+        listView = (ListView)rootView.findViewById(R.id.listView);
+        listAdapter = new PhotoListAdapter();
+        listView.setAdapter(listAdapter);
+
+        Call<PhotoItemCollectionDAO> call = HttpManager.getInstance().getService().loadPhotoList();
+        call.enqueue(new Callback<PhotoItemCollectionDAO>() {
+            @Override
+            public void onResponse(Call<PhotoItemCollectionDAO> call, Response<PhotoItemCollectionDAO> response) {
+                if(response.isSuccessful()){
+                    PhotoItemCollectionDAO dao = response.body();
+                    Log.d("check","data "+ dao);
+                }else{
+                    Log.d("check", "error " + response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PhotoItemCollectionDAO> call, Throwable t) {
+                Log.d("check", "Failure " + t);
+            }
+        });
     }
 
     @Override
