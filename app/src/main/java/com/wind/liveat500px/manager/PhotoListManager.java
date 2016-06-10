@@ -10,18 +10,12 @@ import com.wind.liveat500px.dao.PhotoItemCollectionDAO;
  */
 public class PhotoListManager {
 
-    private static PhotoListManager instance;
 
-    public static PhotoListManager getInstance() {
-        if (instance == null)
-            instance = new PhotoListManager();
-        return instance;
-    }
 
     private Context mContext;
     private PhotoItemCollectionDAO dao;
 
-    private PhotoListManager() {
+    public PhotoListManager() {
         mContext = Contextor.getInstance().getContext();
     }
 
@@ -31,5 +25,27 @@ public class PhotoListManager {
 
     public void setDao(PhotoItemCollectionDAO dao) {
         this.dao = dao;
+    }
+
+    public int getMaximumId(){
+        if(dao == null)
+            return 0;
+        if(dao.getData() == null)
+            return 0;
+        if (dao.getData().size() == 0)
+            return 0;
+        int maxId = dao.getData().get(0).getUserId();
+        for(int i =1 ;i < dao.getData().size(); i++)
+            maxId = Math.max(maxId,dao.getData().get(i).getUserId());
+
+        return maxId;
+    }
+
+    public int getCount(){
+        if(dao == null)
+            return 0;
+        if(dao.getData() == null)
+            return 0;
+        return dao.getData().size();
     }
 }

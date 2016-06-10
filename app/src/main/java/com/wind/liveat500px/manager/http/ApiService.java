@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by 015240 on 6/6/2016.
@@ -13,4 +14,7 @@ import retrofit2.http.POST;
 public interface ApiService {
     @POST("list")
     Call<PhotoItemCollectionDAO> loadPhotoList();
+
+    @POST("list/after/{id}")
+    Call<PhotoItemCollectionDAO> loadPhotoListAfter(@Path("id")int id);
 }
