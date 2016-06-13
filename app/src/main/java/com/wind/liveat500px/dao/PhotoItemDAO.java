@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class PhotoItemDAO {
 
-    @SerializedName("id")               private String id;
+    @SerializedName("id")               private int id;
     @SerializedName("link")             private String link;
     @SerializedName("image_url")        private String imageUrl;
     @SerializedName("caption")          private String caption;
@@ -28,11 +28,11 @@ public class PhotoItemDAO {
     @SerializedName("aperture")         private String aperture;
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

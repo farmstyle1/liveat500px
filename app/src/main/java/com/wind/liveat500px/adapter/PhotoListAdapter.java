@@ -59,7 +59,12 @@ public class PhotoListAdapter extends BaseAdapter {
         if(position > lastPosition) {
             Animation anim = AnimationUtils.loadAnimation(parent.getContext(), R.anim.up_from_bottom);
             item.startAnimation(anim);
+            lastPosition = position;
         }
         return item;
+    }
+
+    public void increaseLastPosition(int amount){
+        lastPosition+=amount;
     }
 }

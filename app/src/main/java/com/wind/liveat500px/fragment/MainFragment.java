@@ -84,59 +84,74 @@ public class MainFragment extends Fragment {
     }
 
     private void refreshData(){
-        if(photoListManager.getCount() == 0)
+        if(photoListManager.getCount() == 0) {
+            Log.d("check", "reload");
             reloadData();
-        else
+        }
+        else {
+            Log.d("check","reloadNewer");
             reloadDataNewer();
+        }
     }
 
     private void reloadDataNewer() {
         int maxId = photoListManager.getMaximumId();
+        Log.d("check","maxId " +maxId);
         Call<PhotoItemCollectionDAO> call = HttpManager.getInstance().getService().loadPhotoListAfter(maxId);
-        call.enqueue(new Callback<PhotoItemCollectionDAO>() {
-            @Override
-            public void onResponse(Call<PhotoItemCollectionDAO> call, Response<PhotoItemCollectionDAO> response) {
-                swipeRefreshLayout.setRefreshing(false);
-                if(response.isSuccessful()){
-                    PhotoItemCollectionDAO dao = response.body();
-                    photoListManager.setDao(dao);
-                    listAdapter.setDao(dao);
-                    listAdapter.notifyDataSetChanged();
-
-                }else{
-                    Log.d("check", "Error " + response.errorBody().toString());
-                }
-            }
-            @Override
-            public void onFailure(Call<PhotoItemCollectionDAO> call, Throwable t) {
-
-            }
-        });
+        call.enqueue(new PhotoListLoadCallback(PhotoListLoadCallback.MODE_RELOAD_NEWER));
     }
 
     private void reloadData() {
         Call<PhotoItemCollectionDAO> call = HttpManager.getInstance().getService().loadPhotoList();
-        call.enqueue(new Callback<PhotoItemCollectionDAO>() {
-            @Override
-            public void onResponse(Call<PhotoItemCollectionDAO> call, Response<PhotoItemCollectionDAO> response) {
-                swipeRefreshLayout.setRefreshing(false);
-                if(response.isSuccessful()){
-                    PhotoItemCollectionDAO dao = response.body();
-                    photoListManager.setDao(dao);
-                    listAdapter.setDao(dao);
-                    listAdapter.notifyDataSetChanged();
-                    Log.d("check", "Success " + dao);
-                }else{
-                    Log.d("check", "Error " + response.errorBody().toString());
-                }
-            }
+        call.enqueue(new PhotoListLoadCallback(PhotoListLoadCallback.MODE_RELOAD));
+    }
 
-            @Override
-            public void onFailure(Call<PhotoItemCollectionDAO> call, Throwable t) {
-                swipeRefreshLayout.setRefreshing(false);
-                Log.d("check", "Failure " + t);
+
+    class PhotoListLoadCallback implements Callback<PhotoItemCollectionDAO>{
+        public static final int MODE_RELOAD = 1;
+        public static final int MODE_RELOAD_NEWER = 2;
+        int mode;
+
+        public PhotoListLoadCallback(int mode) {
+            this.mode = mode;
+        }
+
+        @Override
+        public void onResponse(Call<PhotoItemCollectionDAO> call, Response<PhotoItemCollectionDAO> response) {
+            swipeRefreshLayout.setRefreshing(false);
+            if(response.isSuccessful()){
+                PhotoItemCollectionDAO dao = response.body();
+
+                int firstVisiblePosition = listView.getFirstVisiblePosition();
+                View c = listView.getChildAt(0);
+                int top = c == null ? 0 : c.getTop();  // Check เพื่อป้องกัน NullPointerException
+
+                if(mode == MODE_RELOAD_NEWER)
+                    photoListManager.insertDaoAtTopPosition(dao);
+                else
+                    photoListManager.setDao(dao);
+                listAdapter.setDao(photoListManager.getDao());
+                listAdapter.notifyDataSetChanged();
+
+                if (mode == MODE_RELOAD_NEWER){
+                    int additionalSize =
+                            ( dao != null && dao.getData() != null ) ? dao.getData().size() : 0 ;  // Check เพื่อป้องกัน NullPointerException
+                    listAdapter.increaseLastPosition(additionalSize);
+                    listView.setSelectionFromTop(firstVisiblePosition+additionalSize,top);
+                } else {
+
+                }
+
+
+            }else{
+                Log.d("check", "Error " + response.errorBody().toString());
             }
-        });
+        }
+
+        @Override
+        public void onFailure(Call<PhotoItemCollectionDAO> call, Throwable t) {
+
+        }
     }
 
     @Override

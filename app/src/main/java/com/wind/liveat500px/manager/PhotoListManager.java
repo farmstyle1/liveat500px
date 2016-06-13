@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.wind.liveat500px.dao.PhotoItemCollectionDAO;
+import com.wind.liveat500px.dao.PhotoItemDAO;
+
+import java.util.ArrayList;
 
 /**
  * Created by nuuneoi on 11/16/2014.
@@ -34,11 +37,20 @@ public class PhotoListManager {
             return 0;
         if (dao.getData().size() == 0)
             return 0;
-        int maxId = dao.getData().get(0).getUserId();
+        int maxId = dao.getData().get(0).getId();
         for(int i =1 ;i < dao.getData().size(); i++)
-            maxId = Math.max(maxId,dao.getData().get(i).getUserId());
+            maxId = Math.max(maxId,dao.getData().get(i).getId());
 
         return maxId;
+    }
+
+    public void insertDaoAtTopPosition(PhotoItemCollectionDAO newDao){
+        if(newDao == null)
+            dao = new PhotoItemCollectionDAO();
+        if(newDao.getData() == null)
+            dao.setData(new ArrayList<PhotoItemDAO>());
+        dao.getData().addAll(0,newDao.getData());
+
     }
 
     public int getCount(){
