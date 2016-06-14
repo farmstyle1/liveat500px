@@ -7,9 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ListView;
 
+import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.wind.liveat500px.R;
 import com.wind.liveat500px.adapter.PhotoListAdapter;
 import com.wind.liveat500px.dao.PhotoItemCollectionDAO;
@@ -31,6 +35,7 @@ public class MainFragment extends Fragment {
     private PhotoListAdapter listAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private PhotoListManager photoListManager;
+    private Button btnNewPhoto;
 
     public MainFragment() {
         super();
@@ -53,7 +58,15 @@ public class MainFragment extends Fragment {
 
     private void initInstances(View rootView) {
         photoListManager = new PhotoListManager();
-        // Init 'View' instance(s) with rootView.findViewById here
+
+        btnNewPhoto = (Button)rootView.findViewById(R.id.btnNewPhoto);
+        btnNewPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listView.smoothScrollToPosition(0);
+                hideButtonNewPhoto();
+            }
+        });
         listView = (ListView)rootView.findViewById(R.id.listView);
         listAdapter = new PhotoListAdapter();
         listView.setAdapter(listAdapter);
@@ -106,6 +119,16 @@ public class MainFragment extends Fragment {
         call.enqueue(new PhotoListLoadCallback(PhotoListLoadCallback.MODE_RELOAD));
     }
 
+    private void showButtonNewPhoto(){
+        btnNewPhoto.setVisibility(View.VISIBLE);
+        Animation animation = AnimationUtils.loadAnimation(Contextor.getInstance().getContext(),R.anim.zoom_fade_in);
+        btnNewPhoto.startAnimation(animation);
+    }
+    private void hideButtonNewPhoto(){
+        btnNewPhoto.setVisibility(View.GONE);
+        Animation animation = AnimationUtils.loadAnimation(Contextor.getInstance().getContext(),R.anim.zoom_fade_out);
+        btnNewPhoto.startAnimation(animation);
+    }
 
     class PhotoListLoadCallback implements Callback<PhotoItemCollectionDAO>{
         public static final int MODE_RELOAD = 1;
@@ -124,7 +147,7 @@ public class MainFragment extends Fragment {
 
                 int firstVisiblePosition = listView.getFirstVisiblePosition();
                 View c = listView.getChildAt(0);
-                int top = c == null ? 0 : c.getTop();  // Check เพื่อป้องกัน NullPointerException
+                int top = c == null ? 0 : c.getTop();  // Check เพื่อป้องกัน NullPointerException c มีโอกาศเป็น null ถ้า Listview ไม่มีข้อมูล
 
                 if(mode == MODE_RELOAD_NEWER)
                     photoListManager.insertDaoAtTopPosition(dao);
@@ -138,9 +161,13 @@ public class MainFragment extends Fragment {
                             ( dao != null && dao.getData() != null ) ? dao.getData().size() : 0 ;  // Check เพื่อป้องกัน NullPointerException
                     listAdapter.increaseLastPosition(additionalSize);
                     listView.setSelectionFromTop(firstVisiblePosition+additionalSize,top);
+                    if(additionalSize>0)
+                        showButtonNewPhoto();
                 } else {
 
                 }
+
+
 
 
             }else{
