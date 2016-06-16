@@ -90,6 +90,13 @@ public class MainFragment extends Fragment {
                                  int totalItemCount) {
                 //จะถูกเรียกเมื่อ Scroll
                 swipeRefreshLayout.setEnabled(firstVisibleItem == 0);
+
+                //  เช็คตำแหน่งล่างสุดของ ListView
+                if(firstVisibleItem+visibleItemCount >= totalItemCount){
+                    if(photoListManager.getCount()>0){
+
+                    }
+                }
             }
         });
 
