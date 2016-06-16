@@ -44,12 +44,35 @@ public class PhotoListManager {
         return maxId;
     }
 
+    public int getMinimumId(){
+        if(dao == null)
+            return 0;
+        if(dao.getData() == null)
+            return 0;
+        if (dao.getData().size() == 0)
+            return 0;
+        int minId = dao.getData().get(0).getId();
+        for(int i =1 ;i < dao.getData().size(); i++)
+            minId = Math.min(minId,dao.getData().get(i).getId());
+
+        return minId;
+    }
+
     public void insertDaoAtTopPosition(PhotoItemCollectionDAO newDao){
         if(newDao == null)
             dao = new PhotoItemCollectionDAO();
         if(newDao.getData() == null)
             dao.setData(new ArrayList<PhotoItemDAO>());
         dao.getData().addAll(0,newDao.getData());
+
+    }
+
+    public void appendDaoAtBottomPosition(PhotoItemCollectionDAO newDao){
+        if(newDao == null)
+            dao = new PhotoItemCollectionDAO();
+        if(newDao.getData() == null)
+            dao.setData(new ArrayList<PhotoItemDAO>());
+        dao.getData().addAll(dao.getData().size(),newDao.getData());
 
     }
 

@@ -36,6 +36,7 @@ public class MainFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private PhotoListManager photoListManager;
     private Button btnNewPhoto;
+    private boolean isLoadingMore = false;
 
     public MainFragment() {
         super();
@@ -116,9 +117,17 @@ public class MainFragment extends Fragment {
 
     private void reloadDataNewer() {
         int maxId = photoListManager.getMaximumId();
-        Log.d("check","maxId " +maxId);
         Call<PhotoItemCollectionDAO> call = HttpManager.getInstance().getService().loadPhotoListAfter(maxId);
         call.enqueue(new PhotoListLoadCallback(PhotoListLoadCallback.MODE_RELOAD_NEWER));
+    }
+
+    private void loadMoreData() {
+        if(isLoadingMore)  // ถ้า isLoadingMore เป็น True จะออกจาก method เลย
+            return;
+        isLoadingMore = true;  // เปลี่ยน flag ให้เป็นสถานะ กำลังโหลด  พอระบบวนเข้ามาถาม ก็จะรู้ว่ากำลังโหลดอยู่จะไม่ทำการโหลดซ้ำ
+        int minId = photoListManager.getMaximumId();
+        Call<PhotoItemCollectionDAO> call = HttpManager.getInstance().getService().loadPhotoListBefore(minId);
+        call.enqueue(new PhotoListLoadCallback(PhotoListLoadCallback.MODE_LOAD_MORE));
     }
 
     private void reloadData() {
@@ -140,6 +149,7 @@ public class MainFragment extends Fragment {
     class PhotoListLoadCallback implements Callback<PhotoItemCollectionDAO>{
         public static final int MODE_RELOAD = 1;
         public static final int MODE_RELOAD_NEWER = 2;
+        public static final int MODE_LOAD_MORE = 3;
         int mode;
 
         public PhotoListLoadCallback(int mode) {
@@ -156,12 +166,18 @@ public class MainFragment extends Fragment {
                 View c = listView.getChildAt(0);
                 int top = c == null ? 0 : c.getTop();  // Check เพื่อป้องกัน NullPointerException c มีโอกาศเป็น null ถ้า Listview ไม่มีข้อมูล
 
-                if(mode == MODE_RELOAD_NEWER)
+                if(mode == MODE_RELOAD_NEWER) {
                     photoListManager.insertDaoAtTopPosition(dao);
-                else
+                }
+                else if(mode == MODE_LOAD_MORE) {
+                    photoListManager.appendDaoAtBottomPosition(dao);
+                    isLoadingMore = false;
+                } else {
                     photoListManager.setDao(dao);
+                }
                 listAdapter.setDao(photoListManager.getDao());
                 listAdapter.notifyDataSetChanged();
+
 
                 if (mode == MODE_RELOAD_NEWER){
                     int additionalSize =
@@ -179,12 +195,17 @@ public class MainFragment extends Fragment {
 
             }else{
                 Log.d("check", "Error " + response.errorBody().toString());
+                if(mode == MODE_LOAD_MORE) {
+                    isLoadingMore = false;
+                }
             }
         }
 
         @Override
         public void onFailure(Call<PhotoItemCollectionDAO> call, Throwable t) {
-
+            if(mode == MODE_LOAD_MORE) {
+                isLoadingMore = false;
+            }
         }
     }
 
