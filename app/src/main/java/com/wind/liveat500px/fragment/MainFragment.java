@@ -50,6 +50,17 @@ public class MainFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        photoListManager = new PhotoListManager();
+        if(savedInstanceState != null){
+            onRestoreInstanceState(savedInstanceState);
+        }
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
@@ -58,7 +69,8 @@ public class MainFragment extends Fragment {
     }
 
     private void initInstances(View rootView) {
-        photoListManager = new PhotoListManager();
+
+
 
         btnNewPhoto = (Button)rootView.findViewById(R.id.btnNewPhoto);
         btnNewPhoto.setOnClickListener(new View.OnClickListener() {
@@ -226,11 +238,17 @@ public class MainFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         // Save Instance State here
+        //TODO photoListManager savedInstanceState
     }
 
     /*
      * Restore Instance State Here
      */
+
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
