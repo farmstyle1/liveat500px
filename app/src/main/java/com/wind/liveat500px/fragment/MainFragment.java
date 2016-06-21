@@ -1,5 +1,8 @@
 package com.wind.liveat500px.fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,16 +13,22 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.wind.liveat500px.R;
+import com.wind.liveat500px.activity.MoreInfoActivity;
 import com.wind.liveat500px.adapter.PhotoListAdapter;
 import com.wind.liveat500px.dao.PhotoItemCollectionDAO;
 import com.wind.liveat500px.manager.HttpManager;
 import com.wind.liveat500px.manager.PhotoListManager;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -53,22 +62,32 @@ public class MainFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        photoListManager = new PhotoListManager();
+        init(savedInstanceState);
+
         if(savedInstanceState != null){
             onRestoreInstanceState(savedInstanceState);
         }
 
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        initInstances(rootView);
+        initInstances(rootView,savedInstanceState);
         return rootView;
     }
 
-    private void initInstances(View rootView) {
+    private void init(Bundle savedInstanceState) {
+        photoListManager = new PhotoListManager();
+
+
+
+    }
+
+    private void initInstances(View rootView,Bundle savedInstanceState) {
 
 
 
@@ -82,7 +101,10 @@ public class MainFragment extends Fragment {
         });
         listView = (ListView)rootView.findViewById(R.id.listView);
         listAdapter = new PhotoListAdapter();
+        listAdapter.setDao(photoListManager.getDao());
         listView.setAdapter(listAdapter);
+
+        listView.setOnItemClickListener(listViewItemClicklistener);
 
         swipeRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -107,13 +129,13 @@ public class MainFragment extends Fragment {
                 //  เช็คตำแหน่งล่างสุดของ ListView
                 if(firstVisibleItem+visibleItemCount >= totalItemCount){
                     if(photoListManager.getCount()>0){
-
+                        loadMoreData();
                     }
                 }
             }
         });
-
-        refreshData();
+        if(savedInstanceState == null)
+            refreshData();
     }
 
     private void refreshData(){
@@ -137,7 +159,7 @@ public class MainFragment extends Fragment {
         if(isLoadingMore)  // ถ้า isLoadingMore เป็น True จะออกจาก method เลย
             return;
         isLoadingMore = true;  // เปลี่ยน flag ให้เป็นสถานะ กำลังโหลด  พอระบบวนเข้ามาถาม ก็จะรู้ว่ากำลังโหลดอยู่จะไม่ทำการโหลดซ้ำ
-        int minId = photoListManager.getMaximumId();
+        int minId = photoListManager.getMinimumId();
         Call<PhotoItemCollectionDAO> call = HttpManager.getInstance().getService().loadPhotoListBefore(minId);
         call.enqueue(new PhotoListLoadCallback(PhotoListLoadCallback.MODE_LOAD_MORE));
     }
@@ -202,9 +224,6 @@ public class MainFragment extends Fragment {
 
                 }
 
-
-
-
             }else{
                 Log.d("check", "Error " + response.errorBody().toString());
                 if(mode == MODE_LOAD_MORE) {
@@ -221,6 +240,14 @@ public class MainFragment extends Fragment {
         }
     }
 
+    AdapterView.OnItemClickListener listViewItemClicklistener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent(getContext(), MoreInfoActivity.class);
+            startActivity(intent);
+        }
+    };
+
     @Override
     public void onStart() {
         super.onStart();
@@ -231,22 +258,17 @@ public class MainFragment extends Fragment {
         super.onStop();
     }
 
-    /*
-     * Save Instance State Here
-     */
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        // Save Instance State here
-        //TODO photoListManager savedInstanceState
+
+        outState.putBundle("photoListManager",photoListManager.onSaveInstanceState());
     }
 
-    /*
-     * Restore Instance State Here
-     */
 
     public void onRestoreInstanceState(Bundle savedInstanceState){
-
+        photoListManager.onRestoreInstanceState(savedInstanceState.getBundle("photoListManager"));
     }
 
     @Override

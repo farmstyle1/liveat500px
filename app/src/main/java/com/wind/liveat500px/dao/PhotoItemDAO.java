@@ -1,5 +1,8 @@
 package com.wind.liveat500px.dao;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -9,7 +12,7 @@ import java.util.List;
 /**
  * Created by 015240 on 6/7/2016.
  */
-public class PhotoItemDAO {
+public class PhotoItemDAO implements Parcelable  {
 
     @SerializedName("id")               private int id;
     @SerializedName("link")             private String link;
@@ -27,6 +30,61 @@ public class PhotoItemDAO {
     @SerializedName("shutter_speed")    private String shutterSpeed;
     @SerializedName("aperture")         private String aperture;
 
+    public PhotoItemDAO(){
+
+    }
+
+    protected PhotoItemDAO(Parcel in) {
+        id = in.readInt();
+        link = in.readString();
+        imageUrl = in.readString();
+        caption = in.readString();
+        userId = in.readInt();
+        userName = in.readString();
+        profilePicture = in.readString();
+        tags = in.createStringArrayList();
+        camera = in.readString();
+        lens = in.readString();
+        foculLength = in.readString();
+        iso = in.readString();
+        shutterSpeed = in.readString();
+        aperture = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(link);
+        dest.writeString(imageUrl);
+        dest.writeString(caption);
+        dest.writeInt(userId);
+        dest.writeString(userName);
+        dest.writeString(profilePicture);
+        dest.writeStringList(tags);
+        dest.writeString(camera);
+        dest.writeString(lens);
+        dest.writeString(foculLength);
+        dest.writeString(iso);
+        dest.writeString(shutterSpeed);
+        dest.writeString(aperture);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<PhotoItemDAO> CREATOR = new Creator<PhotoItemDAO>() {
+        @Override
+        public PhotoItemDAO createFromParcel(Parcel in) {
+            return new PhotoItemDAO(in);
+        }
+
+        @Override
+        public PhotoItemDAO[] newArray(int size) {
+            return new PhotoItemDAO[size];
+        }
+    };
 
     public int getId() {
         return id;
