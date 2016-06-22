@@ -22,6 +22,7 @@ import com.wind.liveat500px.R;
 import com.wind.liveat500px.activity.MoreInfoActivity;
 import com.wind.liveat500px.adapter.PhotoListAdapter;
 import com.wind.liveat500px.dao.PhotoItemCollectionDAO;
+import com.wind.liveat500px.dao.PhotoItemDAO;
 import com.wind.liveat500px.manager.HttpManager;
 import com.wind.liveat500px.manager.PhotoListManager;
 
@@ -40,6 +41,15 @@ import retrofit2.Response;
  * Created by nuuneoi on 11/16/2014.
  */
 public class MainFragment extends Fragment {
+
+
+    // จะส่ง Listener ไปหา Activity เพื่อให้ stratActivity ใหม่ให้
+    public interface FragmnetListener{
+        //โยนของที่จะส่งไปให้ Activity ใช้งานต่อ
+        void onPhotoItemClicked(PhotoItemDAO dao);
+    }
+
+
     private ListView listView;
     private PhotoListAdapter listAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -243,8 +253,11 @@ public class MainFragment extends Fragment {
     AdapterView.OnItemClickListener listViewItemClicklistener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(getContext(), MoreInfoActivity.class);
-            startActivity(intent);
+            if(position<photoListManager.getCount()) {
+                PhotoItemDAO dao = photoListManager.getDao().getData().get(position);
+                FragmnetListener fragmnetListener = (FragmnetListener) getActivity();
+                fragmnetListener.onPhotoItemClicked(dao);
+            }
         }
     };
 

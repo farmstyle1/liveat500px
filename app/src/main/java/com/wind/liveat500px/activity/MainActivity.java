@@ -1,5 +1,6 @@
 package com.wind.liveat500px.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.PersistableBundle;
 import android.support.v4.widget.DrawerLayout;
@@ -11,9 +12,10 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.wind.liveat500px.R;
+import com.wind.liveat500px.dao.PhotoItemDAO;
 import com.wind.liveat500px.fragment.MainFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainFragment.FragmnetListener{
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
@@ -60,5 +62,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPhotoItemClicked(PhotoItemDAO dao) {
+        Intent intent = new Intent(MainActivity.this,MoreInfoActivity.class);
+        intent.putExtra("dao",dao);
+        startActivity(intent);
     }
 }

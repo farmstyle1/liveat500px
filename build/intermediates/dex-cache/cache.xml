@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Program Files\Android\android-studio 2.2 preview 3\gradle\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha3\constraint-layout-solver-1.0.0-alpha3.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="29e762ef46d0cb2b648eb3d25eeb2b29853579fe">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.0-alpha3_f421b00a7f95befde9f92a01bf477e79d1f79030.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
         jumboMode="false"
         optimize="false"
@@ -72,6 +81,15 @@
         revision="23.0.2"
         sha1="607a7097098777500b9fa71bc68848eeeb2307f7">
         <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\liveat500px-TheCheeseLibrary-unspecified_6eb9a696e39d875e78d7890450254fd58c9d99a9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha3\jars\classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="a2bcc25d161a84d8eabde61806dad90029b3ff15">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\com.android.support.constraint-constraint-layout-1.0.0-alpha3_e8ede7df1fe3c6bd43192e3f5acd1114a26cf535.jar" />
     </item>
     <item
         is-multidex="false"
