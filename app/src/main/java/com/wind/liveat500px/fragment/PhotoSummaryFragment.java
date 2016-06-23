@@ -64,12 +64,12 @@ public class PhotoSummaryFragment extends Fragment {
         tvName = (TextView)rootView.findViewById(R.id.tvName);
         tvDescription = (TextView) rootView.findViewById(R.id.tvDescription);
 
-        tvName.setText(dao.getCaption());
+        /*tvName.setText(dao.getCaption());
         tvDescription.setText(dao.getUserName()+" \n "+dao.getCamera());
         Glide.with(PhotoSummaryFragment.this)
                 .load(dao.getImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(ivImg);
+                .into(ivImg);*/
     }
 
     @Override

@@ -1,12 +1,18 @@
 package com.wind.liveat500px.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -54,7 +60,7 @@ public class MoreInfoFragment extends Fragment {
     }
 
     private void init(Bundle savedInstanceState) {
-
+        setHasOptionsMenu(true);
     }
 
 
@@ -112,6 +118,26 @@ public class MoreInfoFragment extends Fragment {
         super.onStop();
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_more_info,menu);
+
+        MenuItem menuItem = (MenuItem) menu.findItem(R.id.action_share);
+        ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+        shareActionProvider.setShareIntent(getShareIntent());
+
+
+    }
+
+
+    private Intent getShareIntent(){
+        Intent intent = new Intent(Intent.ACTION_SEND);     // สร้าง Intent ที่ไม่ระบุผู้รับ  จะให้ User เป็นคนเลือกปลายทาง
+        intent.setType("text/plain");                       // MIME Type
+        intent.putExtra(Intent.EXTRA_SUBJECT,"Subject");    // มาตรฐานการส่ง text/plain
+        intent.putExtra(Intent.EXTRA_TEXT,"Extra Text");
+        return intent;
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
