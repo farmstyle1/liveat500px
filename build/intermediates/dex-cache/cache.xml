@@ -2,157 +2,109 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="false"
-        revision="23.0.2"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_befaaf202c69702607b432fb18112c9603bd4337.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Program Files\Android\android-studio 2.2 preview 3\gradle\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha3\constraint-layout-solver-1.0.0-alpha3.jar"
-        jumboMode="false"
-        optimize="false"
-        revision="23.0.2"
-        sha1="29e762ef46d0cb2b648eb3d25eeb2b29853579fe">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.0-alpha3_f421b00a7f95befde9f92a01bf477e79d1f79030.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
-        jumboMode="false"
-        optimize="false"
-        revision="23.0.2"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_1ac5a94c2f6be162c291d683cb91ed54c2c24c7c.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.0.2\43eeae0b9fb087bb3194ba59ab63a38a32fbf3e\retrofit-2.0.2.jar"
         jumboMode="false"
-        optimize="false"
         revision="23.0.2"
         sha1="043eeae0b9fb087bb3194ba59ab63a38a32fbf3e">
         <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\retrofit-2.0.2_4b833e8e9d1ce62ff547c14064c43ba0e2588b5d.jar" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.6.1\b9d63507329a7178e026fc334f87587ee5070ac5\gson-2.6.1.jar"
+        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\liveat500px\TheCheeseLibrary\unspecified\jars\classes.jar"
         jumboMode="false"
-        optimize="false"
         revision="23.0.2"
-        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\gson-2.6.1_33fc0fa7107e2b5cb929cd0fa97e67717735627e.jar" />
+        sha1="1bfbdb552c04a298bdf77982539ad9e0bb16f8de">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\liveat500px-TheCheeseLibrary-unspecified_6eb9a696e39d875e78d7890450254fd58c9d99a9.jar" />
     </item>
     <item
-        is-multidex="false"
         jar="C:\Users\015240\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="false"
-        optimize="false"
         revision="23.0.2"
         sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
         <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_a9581b2165c42ec4ca5df522e9fb329f2da83fbf.jar" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
-        jumboMode="false"
-        optimize="false"
-        revision="23.0.2"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\okio-1.6.0_24765cb4c6523a91587bc48453bdbfeb5f3129f2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.squareup\otto\1.3.8\cf615176cd1177edf71d3c9605f8dc148fede6be\otto-1.3.8.jar"
-        jumboMode="false"
-        optimize="false"
-        revision="23.0.2"
-        sha1="cf615176cd1177edf71d3c9605f8dc148fede6be">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\otto-1.3.8_4e4d315a9de098ecf9ad3603316eafd85445fbd9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\liveat500px\TheCheeseLibrary\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="false"
-        revision="23.0.2"
-        sha1="607a7097098777500b9fa71bc68848eeeb2307f7">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\liveat500px-TheCheeseLibrary-unspecified_6eb9a696e39d875e78d7890450254fd58c9d99a9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha3\jars\classes.jar"
-        jumboMode="false"
-        optimize="false"
-        revision="23.0.2"
-        sha1="a2bcc25d161a84d8eabde61806dad90029b3ff15">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\com.android.support.constraint-constraint-layout-1.0.0-alpha3_e8ede7df1fe3c6bd43192e3f5acd1114a26cf535.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
         jumboMode="false"
-        optimize="false"
         revision="23.0.2"
         sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
         <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_2da3369e0d3b11ade6220189ed946bf8f1a73074.jar" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
         jumboMode="false"
-        optimize="false"
         revision="23.0.2"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_9118707a64d5462b4d226b4c37b92f77e0ff228f.jar" />
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_84ff55b4660bacd2e3ead0d7150296147cb2ad10.jar" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.2.0\f7873a2ebde246a45c2a8d6f3247108b4c88a879\okhttp-3.2.0.jar"
+        jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.6.1\b9d63507329a7178e026fc334f87587ee5070ac5\gson-2.6.1.jar"
         jumboMode="false"
-        optimize="false"
         revision="23.0.2"
-        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\okhttp-3.2.0_37fb0112b8b186ae8d4d5caee779d59f98b42647.jar" />
+        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\gson-2.6.1_33fc0fa7107e2b5cb929cd0fa97e67717735627e.jar" />
     </item>
     <item
-        is-multidex="false"
         jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.inthecheesefactory.thecheeselibrary\adjustable-imageview\1.0.0\jars\classes.jar"
         jumboMode="false"
-        optimize="false"
         revision="23.0.2"
         sha1="6f4877a9f0a653e193bfb600379e4bfc8472be47">
         <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\com.inthecheesefactory.thecheeselibrary-adjustable-imageview-1.0.0_784f5704a16eef2c3c0a290e7643925fe7bf98e9.jar" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.0.2\f8d87f15b94b8d74e7ccf61d7eedb558811cdb30\converter-gson-2.0.2.jar"
+        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
         jumboMode="false"
-        optimize="false"
         revision="23.0.2"
-        sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\converter-gson-2.0.2_8b9b6a1419e3e94c2e73682d6e4fc6451ce81d48.jar" />
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_befaaf202c69702607b432fb18112c9603bd4337.jar" />
     </item>
     <item
-        is-multidex="false"
+        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_1ac5a94c2f6be162c291d683cb91ed54c2c24c7c.jar" />
+    </item>
+    <item
         jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
         jumboMode="false"
-        optimize="false"
         revision="23.0.2"
         sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
         <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\glide-3.7.0_da7d1724ff40bd55bd9de599eef8b154ba0220aa.jar" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
         jumboMode="false"
-        optimize="false"
         revision="23.0.2"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_84ff55b4660bacd2e3ead0d7150296147cb2ad10.jar" />
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\okio-1.6.0_24765cb4c6523a91587bc48453bdbfeb5f3129f2.jar" />
+    </item>
+    <item
+        jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.2.0\f7873a2ebde246a45c2a8d6f3247108b4c88a879\okhttp-3.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\okhttp-3.2.0_37fb0112b8b186ae8d4d5caee779d59f98b42647.jar" />
+    </item>
+    <item
+        jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.0.2\f8d87f15b94b8d74e7ccf61d7eedb558811cdb30\converter-gson-2.0.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\converter-gson-2.0.2_8b9b6a1419e3e94c2e73682d6e4fc6451ce81d48.jar" />
+    </item>
+    <item
+        jar="C:\Users\015240\.gradle\caches\modules-2\files-2.1\com.squareup\otto\1.3.8\cf615176cd1177edf71d3c9605f8dc148fede6be\otto-1.3.8.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="cf615176cd1177edf71d3c9605f8dc148fede6be">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\otto-1.3.8_4e4d315a9de098ecf9ad3603316eafd85445fbd9.jar" />
+    </item>
+    <item
+        jar="D:\Project\liveat500px\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="D:\Project\liveat500px\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_9118707a64d5462b4d226b4c37b92f77e0ff228f.jar" />
     </item>
 
 </items>
